@@ -5,7 +5,6 @@ import string
 
 class Char:
     def __init__(self, x):
-        self.char = random.choice(string.ascii_letters)
         self.x = x
         self.y = 0
 
@@ -18,9 +17,11 @@ def drop_char(stdscr, char: Char):
         stdscr.addch(char.y, char.x, ' ')
         return
 
+    new_char = random.choice(string.ascii_letters)
+
     stdscr.addch(char.y, char.x, ' ')
     char.y += 1
-    stdscr.addch(char.y, char.x, char.char, curses.color_pair(1))
+    stdscr.addch(char.y, char.x, new_char, curses.color_pair(1))
 
 def main(stdscr):
     curses.start_color()
@@ -34,7 +35,7 @@ def main(stdscr):
 
     while True:
         for c in range(cols - 1):
-            if random.randint(0, 24) == 0:
+            if random.randint(0, 14) == 0:
                 chars.append(Char(c))
 
         for char in chars:
